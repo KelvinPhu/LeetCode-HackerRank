@@ -44,6 +44,7 @@ class Solution {
             if (result.containsKey(complement)) {
                 return new int[] { result.get(complement), nums[i] };
             }
+            result.put(complement, nums[i]);
         }
         return new int[] {};
     }
