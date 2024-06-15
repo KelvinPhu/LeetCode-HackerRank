@@ -36,21 +36,13 @@ import java.util.ArrayList;
 
 class Solution {
     public int[] twoSum(int[] nums, int target) {
-        ArrayList<Integer> result = new ArrayList<>();
-
-        for (int firstNum : nums) {
-            for (int secondNum : nums) {
-                if (firstNum + secondNum == target) {
-                    result.add(firstNum);
-                    result.add(secondNum);
+        for (int i = 0; i < nums.length - 1; i++) {
+            for (int j = i + 1; j < nums.length; j++) {
+                if (nums[i] + nums[j] == target) {
+                    return new int[] { i, j };
                 }
             }
         }
-
-        int[] resultArray = new int[result.size()];
-        for (int i = 0; i < result.size(); i++) {
-            resultArray[i] = result.get(i);
-        }
-        return resultArray;
+        return new int[] {};
     }
 }
