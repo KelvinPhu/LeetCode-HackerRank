@@ -36,22 +36,21 @@ import java.util.LinkedList;
  * 
  */
 
-// create ListNode
+create ListNode
 public class ListNode {
-    int val;
-    ListNode next;
+int val;
+ListNode next;
 
-    ListNode() {
-    }
+ListNode() {}
 
-    ListNode(int val) {
-        this.val = val;
-    }
+ListNode(int val) {
+this.val = val;
+}
 
-    ListNode(int val, ListNode naxt) {
-        this.val = val;
-        this.next = next;
-    }
+ListNode(int val, ListNode naxt) {
+this.val = val;
+this.next = next;
+}
 
 }
 
@@ -65,44 +64,32 @@ public class AddTwoNumbers {
 
         int carry = 0;
 
-        // traverse to each LinkedList
-        while (l1 != null && l2 != null) {
-            // sum of each list val and carry
-            int sum = l1.val + l2.val + carry;
+        // loop while l1 or l2 not null, still have carry value
+        while (l1 != null || l2 != null || carry != 0) {
 
-            // calculate carry by sum / 10
+            // count sum from carry value
+            int sum = carry;
+
+            // if l1 not null, add l1 to sum and move the l1 node to the next node
+            if (l1 != null) {
+                sum += l1.val;
+                l1 = l1.next;
+            }
+            // if l2 not null, add l2 to sum and move the l2 node to the next node
+            if (l2 != null) {
+                sum += l2.val;
+                l2 = l2.next;
+            }
+
+            // count carry for next loop
             carry = sum / 10;
-
-            // add head to the new LinkedList by sum % 10 and move to next node
+            // add last digit of node to l3
             l3.next = new ListNode(sum % 10);
+            // move l3 node to next node
             l3 = l3.next;
-            l1 = l1.next;
-            l2 = l2.next;
         }
 
-        // check if list1 or list2 is not null then add the value to sum
-        while (l1 != null) {
-            int sum = l1.val + carry;
-            carry = sum / 10;
-            l3.next = new ListNode(sum % 10);
-            l3 = l3.next;
-            l1 = l1.next;
-        }
-
-        while (l2 != null) {
-            int sum = l2.val + carry;
-            carry = sum / 10;
-            l3.next = new ListNode(sum % 10);
-            l3 = l3.next;
-            l2 = l2.next;
-        }
-
-        // check if carry is not 0 then add the carry to the new LinkedList
-        if (carry != 0) {
-            l3.next = new ListNode(carry);
-        }
-
-        // return next node of head
+        // return result linked list ignoring the first dummy node
         return head.next;
     }
 }
